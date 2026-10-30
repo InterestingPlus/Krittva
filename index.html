@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#176b55">
+  <title>Krittva | Everyday Meal Inspiration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">K</span><span><b>KRITTVA</b><small id="brandTagline">Everyday meal inspiration</small></span></a>
+    <div class="top-actions">
+      <span id="seasonPill" class="season-pill"></span>
+      <label class="language-control" for="languageSelect"><span id="languageLabel">Language</span><select id="languageSelect" aria-label="Choose language"><option value="en">English</option><option value="hi">हिंदी</option><option value="gu">ગુજરાતી</option></select></label>
+      <button class="icon-btn" id="printBtn" title="Print menu">⎙ <span id="printLabel">Print</span></button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow" id="heroEyebrow">A LITTLE LESS “WHAT SHOULD WE COOK?”</p>
+        <h1 id="heroTitle">What shall we cook today?</h1>
+        <p class="hero-copy" id="heroCopy">Find delicious ideas using ingredients already in your kitchen.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true"><span>🥬</span><span>🍅</span><span>🥕</span><span>🫑</span><div id="heroArtText">Happy<br>Kitchen ❤️</div></div>
+    </section>
+
+    <nav class="tabs" aria-label="Main navigation" id="mainTabs">
+      <button class="tab active" data-view="discover" id="tabDiscover">🍲 Dish ideas</button>
+      <button class="tab" data-view="planner" id="tabPlanner">📅 Weekly planner</button>
+      <button class="tab" data-view="matcher" id="tabMatcher">🧺 Ingredients matcher</button>
+      <button class="tab" data-view="shopping" id="tabShopping">🛒 Shopping list</button>
+      <button class="tab" data-view="saved" id="tabSaved">❤️ Favourites & history</button>
+    </nav>
+
+    <section id="discoverView" class="view active">
+      <div class="section-heading">
+        <div><p class="eyebrow" id="discoverEyebrow">DISCOVER SOMETHING TASTY</p><h2 id="discoverTitle">Dish collection</h2></div>
+        <button class="ghost-btn" id="randomBtn">✨ <span id="surpriseLabel">Surprise me</span></button>
+      </div>
+      <div class="quick-stats" id="stats"></div>
+      <div class="filters panel">
+        <label class="search-wrap">⌕ <input id="searchInput" type="search" placeholder="Dish, ingredient શોધો / खोजें..."></label>
+        <select id="mealFilter"><option value="all">All meals · બધા</option><option>Breakfast</option><option>Lunch</option><option>Dinner</option><option>Snack</option></select>
+        <select id="seasonFilter"><option value="all">All seasons · બધી ઋતુ</option><option value="summer">Summer · ઉનાળો</option><option value="monsoon">Monsoon · ચોમાસું</option><option value="winter">Winter · શિયાળો</option><option value="allseason">All season · બારેમાસ</option></select>
+        <select id="cuisineFilter"><option value="all">All cuisines</option><option>Gujarati</option><option>Punjabi</option><option>South Indian</option><option>Rajasthani</option><option>Indo-Chinese</option><option>Indian</option></select>
+        <select id="sortFilter"><option value="name">Name A–Z</option><option value="time">Quickest first</option></select>
+      </div>
+      <div class="chips" id="mealChips">
+        <button class="chip selected" data-meal="all">All</button><button class="chip" data-meal="Breakfast">Breakfast</button><button class="chip" data-meal="Lunch">Lunch</button><button class="chip" data-meal="Dinner">Dinner</button><button class="chip" data-meal="Snack">Snacks</button>
+      </div>
+      <div class="result-line"><span id="resultCount">Showing dishes</span><span>Season suggestions are flexible, not strict rules.</span></div>
+      <div class="dish-grid" id="dishGrid"></div>
+      <div class="empty hidden" id="emptyState">No dishes match these filters. Try clearing one. 🥣</div>
+    </section>
+
+    <section id="plannerView" class="view">
+      <div class="section-heading"><div><p class="eyebrow" id="plannerEyebrow">PLAN ONCE, RELAX ALL WEEK</p><h2 id="plannerTitle">Weekly planner</h2></div><div class="button-row"><button class="ghost-btn" id="autoPlanBtn">✨ <span id="autoPlanLabel">Auto-fill week</span></button><button class="primary-btn" id="clearPlanBtn">Clear week</button></div></div>
+      <div class="notice" id="plannerNotice">Choose a dish in each meal slot. Your plan is saved automatically on this device.</div>
+      <div class="planner-wrap"><div id="plannerGrid" class="planner-grid"></div></div>
+    </section>
+
+    <section id="matcherView" class="view">
+      <div class="section-heading"><div><p class="eyebrow">USE WHAT YOU ALREADY HAVE</p><h2 id="matcherTitle">What can we cook?</h2></div></div>
+      <div class="matcher-layout">
+        <div class="panel matcher-panel">
+          <h3 id="availableTitle">Available ingredients</h3><p class="muted" id="availableCopy">Select what is currently in your kitchen.</p>
+          <label class="search-wrap">⌕ <input id="ingredientSearch" placeholder="Find ingredient / સામગ્રી શોધો"></label>
+          <div id="ingredientOptions" class="ingredient-options"></div>
+          <div class="selected-head"><b>Selected (<span id="selectedCount">0</span>)</b><button class="text-btn" id="clearIngredients">Clear all</button></div>
+          <div id="selectedIngredients" class="selected-ingredients"><span class="muted">Nothing selected yet.</span></div>
+          <button class="primary-btn full" id="matchBtn">Find matching dishes →</button>
+        </div>
+        <div class="match-results"><div class="match-intro"><h3 id="suggestedTitle">Suggested dishes</h3><p class="muted" id="suggestedCopy">Best matches appear first. Missing ingredients are listed too.</p></div><div id="matchGrid" class="dish-grid compact"><div class="empty">Select ingredients and tap “Find matching dishes”.</div></div></div>
+      </div>
+    </section>
+
+    <section id="shoppingView" class="view">
+      <div class="section-heading"><div><p class="eyebrow">A SIMPLE MARKET CHECKLIST</p><h2 id="shoppingTitle">Shopping list</h2></div><div class="button-row"><button class="ghost-btn" id="addPlanItems">Add weekly plan items</button><button class="primary-btn" id="printShopping">Print list</button></div></div>
+      <div class="shopping-add panel"><input id="shoppingInput" placeholder="Add item / વસ્તુ ઉમેરો"><button class="primary-btn" id="addShopping">Add item</button></div>
+      <div id="shoppingList" class="shopping-list"></div>
+      <p class="muted small">Tick items as you buy them. This list stays saved in your browser.</p>
+    </section>
+
+    <section id="savedView" class="view">
+      <div class="section-heading"><div><p class="eyebrow">YOUR FAMILY'S GO-TO DISHES</p><h2 id="savedTitle">Favourites & history</h2></div></div>
+      <div class="saved-columns"><div><h3>❤️ Favourites</h3><div id="favouriteGrid" class="dish-grid compact"></div></div><div><h3>🕘 Recently cooked</h3><div id="historyList" class="history-list"></div></div></div>
+    </section>
+  </main>
+
+  <footer><b>KRITTVA</b><span id="footerCopy">Made for happier kitchens. Save this page on your home screen for easy access.</span></footer>
+
+  <dialog id="dishDialog" class="dish-dialog"><button class="dialog-close" id="closeDialog" aria-label="Close">×</button><div id="dialogContent"></div></dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
